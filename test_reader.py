@@ -3,26 +3,32 @@ import asynctest
 import asyncio
 import numpy as np
 import argparse
-from joule.client.readers.random import RandomReader
+from reader import ReaderDemo
 
 
-class TestRandomReader(asynctest.TestCase):
+class TestReader(asynctest.TestCase):
 
-    def test_generates_random_values(self):
-        WIDTH = 2
-        RATE = 100
-        my_reader = RandomReader(output_rate=100)
-        pipe = LocalNumpyPipe("output", layout="float32_%d" % WIDTH)
-        args = argparse.Namespace(width=WIDTH, rate=RATE, pipes="unset")
+    def test_reader(self):
+        " with a rate=0.1, reader should generate 10 values in 1 second "
+        # build test objects 
+        my_reader = ReaderDemo()
+        pipe = LocalNumpyPipe("output", layout="float32_1")
+        args = argparse.Namespace(rate=0.1, pipes="unset")
         # run reader in an event loop
         loop = asyncio.get_event_loop()
-        loop.call_later(0.1, my_reader.stop)
-        loop.run_until_complete(my_reader.run(args, pipe))
+        my_task = asyncio.ensure_future(my_reader.run(args, pipe))
+        loop.call_later(1, my_task.cancel)
+        try:
+            loop.run_until_complete(my_task)
+        except asyncio.CancelledError:
+            pass
         loop.close()
         # check the results
         result = pipe.read_nowait()
-        diffs = np.diff(result['timestamp'])
-        self.assertEqual(np.mean(diffs), 1/RATE*1e6)
-        self.assertEqual(np.shape(result['data'])[1], WIDTH)
-
+        # data should be 0,1,2,...,9
+        np.testing.assert_array_equal(result['data'],
+                                      np.arange(10))
+        # timestamps should be about 0.1s apart
+        np.testing.assert_array_almost_equal(np.diff(result['timestamp'])/1e6,
+                                             np.ones(9)*0.1, decimal=2)
         
