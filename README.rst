@@ -1,9 +1,8 @@
 Example Modules
 ===============
 
-.. note::
-   For more information read the Joule Documentation at
-   http://docs.wattsworth.net/joule/writing_modules.html
+*For more information read the Joule Documentation at*
+http://docs.wattsworth.net/joule/writing_modules.html 
 
 This repository contains reference implementations of a custom
 FilterModule and ReaderModule.  Unittests for both modules are
