@@ -31,7 +31,7 @@ Docker. See the e2e testing section in Joule for an example.
 .. code-block::  bash
 
 		 $> cd example_modules 
-		 $> jouled -d e2e/main.conf &
-		 $> joule -d e2e/main.conf modules
+		 $> jouled --config e2e/main.conf &
+		 $> joule --config e2e/main.conf modules
 		 $> fg  # Ctrl-C to exit joule
 		 
