@@ -22,16 +22,27 @@ nose2:
 		OK
 
 
-You may additionally want to run end-to-end tests using the jouled
-process. The configuration directory contains an main.conf file and
-corresponding stream and module configurations to run a local joule
-instance. To automate this testing you can run the joule process in
-Docker. See the e2e testing section in Joule for an example.
+This repository also contains an end-to-end test suite in the e2e
+directory. This suite uses docker-compose to build a NilmDB and Joule
+container for testing. See docker documentation for details on installing
+docker compose: https://docs.docker.com/compose/
 
 .. code-block::  bash
 
-		 $> cd example_modules 
-		 $> jouled --config e2e/main.conf &
-		 $> joule --config e2e/main.conf modules
-		 $> fg  # Ctrl-C to exit joule
+		 $> cd example_modules/e2e
+		 $> ./runner.sh
+		 # ...output from e2e setup ...
+		 
+		 # this is the e2e test output:
+		 $> joule_1   | ---------[running e2e test suite]---------
+		 $> joule_1   | OK
+		 $> e2e_joule_1 exited with code 0
+		 
+		 # the rest of output is from e2e shutdown:
+		 $> Aborting on container exit...
+		 $> Stopping e2e_nilmdb_1 ... 
+		 $> Going to remove e2e_joule_1, e2e_nilmdb_1
+		 $> Removing e2e_joule_1 ... 
+		 $> Removing e2e_nilmdb_1 ... 
+
 		 
