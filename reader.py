@@ -3,6 +3,7 @@ from joule.client import ReaderModule
 import asyncio
 import numpy as np
 
+
 class ReaderDemo(ReaderModule):
     "Example reader: generates incrementing values at user specified rate"
 

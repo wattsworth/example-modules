@@ -10,7 +10,7 @@ class FilterDemo(FilterModule):
         self.help = "a paragraph: this filter does x,y,z etc..."
     
     def custom_args(self, parser):
-        parser.add_argument("offset", type=float, default=0,
+        parser.add_argument("offset", type=int, default=0,
                             help="apply an offset")
         
     async def run(self, parsed_args, inputs, outputs):
