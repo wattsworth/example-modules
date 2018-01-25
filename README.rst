@@ -2,10 +2,62 @@ Example Modules
 ===============
 
 *For more information read the Joule Documentation at*
-http://docs.wattsworth.net/joule/writing_modules.html 
+http://docs.wattsworth.net/joule
 
-This repository contains reference implementations of a custom
-FilterModule and ReaderModule.  Unittests for both modules are
+Example Reader:
+--------------
+Read random data, this can be extended to supprot low bandwidth sensors (<1Hz).
+
+Usage:
+
+.. code-block:: bash
+
+  $> ./example_reader.py
+  #output to terminal
+
+  #Isolated execution (jouled must be running)
+  $> ./example_reader.py --module_config="module_configs/example_reader.conf" --stream_configs="stream_configs"
+
+Example Filter:
+---------------
+Apply a median filter of fixed WINDOW size 
+
+Usage:
+
+.. code-block:: bash
+
+  #Isolated execution (jouled must be running)
+  $> ./example_reader.py --module_config="module_configs/example_filter.conf" --stream_configs="stream_configs"
+
+  #Historic Isolated Execution (jouled must be running)
+  $> ./example_reader.py --module_config="module_configs/example_filter.conf" --stream_configs="stream_configs"
+     --start="yesterday" --end="today"
+
+Example Composite:
+------------------
+Combine the example reader and filter into a single module
+
+
+  $> ./example_composite.py
+  #output to terminal
+
+  #Isolated execution (jouled must be running)
+  $> ./example_composite.py --module_config="module_configs/example_composite.conf" --stream_configs="stream_configs"
+
+Other Modules
+-------------
+
+High Bandwidth Reader: produce sawtooth waveform with adjustable data rate. 
+
+Offset Filter: add an adjustable offset to a stream
+
+
+Testing
+-------
+
+*UNDER DEVELOPMENT*
+
+  Unittests are
 included in the respective *_test.py files. Run the tests using
 nose2:
 
