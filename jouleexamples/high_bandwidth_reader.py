@@ -1,20 +1,20 @@
 #!/usr/bin/python3
 
-from joule import ReaderModule, time_now
 from joule import ReaderModule
+from joule.utilities import time_now
 import asyncio
 import numpy as np
 
 
 class HighBandwidthReader(ReaderModule):
-    #Produce sawtooth waveform at specified rate"
+    #Produce sawtooth waveform at specified sample rate"
 
     def custom_args(self, parser):
         grp = parser.add_argument_group("module",
                                         "module specific arguments")
         grp.add_argument("--rate", type=float,
                          required=True,
-                         help=" output rate in Hz")
+                         help="sample rate in Hz")
     async def run(self, parsed_args, output):
         start_ts = time_now()
         #run 5 times per second
@@ -26,8 +26,8 @@ class HighBandwidthReader(ReaderModule):
                              samples_per_period,endpoint=False)
             vals=np.linspace(0,33,samples_per_period)
             start_ts = end_ts
-            await output.write(np.hstack((ts[:,None],
-                                          vals[:,None])))
+            chunk = np.hstack((ts[:,None], vals[:,None]))
+            await output.write(chunk)
             await asyncio.sleep(period)
             
 if __name__ == "__main__":

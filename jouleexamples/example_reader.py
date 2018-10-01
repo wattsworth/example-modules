@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-from joule import ReaderModule, time_now
+from joule import ReaderModule
+from joule.utilities import time_now
 import asyncio
 import numpy as np
 
