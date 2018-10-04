@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 from joule import FilterModule, EmptyPipe
 
@@ -24,6 +24,10 @@ class OffsetFilter(FilterModule):
             except EmptyPipe:
                 break
 
-if __name__ == "__main__":
+
+def main():
     r = OffsetFilter()
     r.start()
+
+if __name__ == "__main__":
+    main()

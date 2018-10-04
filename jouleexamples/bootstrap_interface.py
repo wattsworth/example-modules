@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
+
 import asyncio
 from aiohttp import web
-from joule.client.reader_module import ReaderModule
 import aiohttp_jinja2
 import jinja2
 import os
+from random import randint
+
+from joule.client.reader_module import ReaderModule
 
 CSS_DIR = os.path.join(os.path.dirname(__file__), 'assets', 'css')
 JS_DIR = os.path.join(os.path.dirname(__file__), 'assets', 'js')
@@ -31,14 +35,18 @@ class BootstrapInterface(ReaderModule):
 
     @aiohttp_jinja2.template('index.jinja2')
     async def index(self, request):
-        return {'name': "Data Visualizer",
-                'version': 1.0}
+        return {'message': "hello world"}
 
     # json end point for AJAX requests
     async def data(self, request):
         # return summary statistics, etc.
-        return web.json_response(data=[1,2,8])
+        return web.json_response(data={'random_value': randint(0, 10)})
+
+
+def main():
+    r = BootstrapInterface()
+    r.start()
+
 
 if __name__ == "__main__":
-    r = ComplexInterface()
-    r.start()
+    main()

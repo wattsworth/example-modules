@@ -1,6 +1,8 @@
+#!/usr/bin/env python3
+
 import asyncio
 from aiohttp import web
-from joule.client.reader_module import ReaderModule
+from joule import ReaderModule
 
 
 class ExampleInterface(ReaderModule):
@@ -17,6 +19,10 @@ class ExampleInterface(ReaderModule):
         return web.Response(text="hello world!")
 
 
-if __name__ == "__main__":
-    r = ExampleVisualizer()
+def main():
+    r = ExampleInterface()
     r.start()
+
+
+if __name__ == "__main__":
+    main()

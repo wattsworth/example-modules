@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from setuptools import setup
 import versioneer
@@ -44,7 +44,8 @@ setup(
                       'tabulate',
                       'sqlalchemy',
                       'aiohttp-jinja2',
-                      'jinja2'],
+                      'jinja2',
+                      'joule'],
     namespace_packages=[],
     packages=['jouleexamples'],
     include_package_data=True,

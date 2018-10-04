@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 from joule import FilterModule, EmptyPipe
 from scipy.signal import medfilt
@@ -33,6 +33,10 @@ class ExampleFilter(FilterModule):
             await asyncio.sleep(1)
 
 
-if __name__ == "__main__":
+def main():
     r = ExampleFilter()
     r.start()
+
+
+if __name__ == "__main__":
+    main()
