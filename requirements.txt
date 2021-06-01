@@ -23,7 +23,7 @@ SQLAlchemy==1.2.10
 tabulate==0.8.2
 treelib==1.5.3
 tzlocal==1.5.1
-urllib3==1.23
+urllib3==1.26.5
 yarl==1.2.6
 Jinja2==2.10
 aiohttp-jinja2==1.0.0
