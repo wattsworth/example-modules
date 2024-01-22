@@ -6,7 +6,7 @@ http://docs.wattsworth.net/joule
 
 Example Reader:
 --------------
-Read random data, this can be extended to supprot low bandwidth sensors (<1Hz).
+Read random data, this can be extended to support low bandwidth sensors (<1Hz).
 
 Usage:
 
