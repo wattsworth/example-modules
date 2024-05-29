@@ -2,7 +2,7 @@
 
 import asyncio
 from aiohttp import web
-from joule import ReaderModule
+from joule.client import ReaderModule
 
 
 class ExampleInterface(ReaderModule):

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from joule import FilterModule, EmptyPipe
+from joule.client import FilterModule
 from scipy.signal import medfilt
 import asyncio
 

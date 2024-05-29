@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 import argparse
-from joule import CompositeModule, LocalNumpyPipe
+from joule.models.pipes import LocalPipe
+from joule.client import CompositeModule
 
 from high_bandwidth_reader import HighBandwidthReader
 from example_filter import ExampleFilter
@@ -19,7 +20,7 @@ class ExampleComposite(CompositeModule):
         my_filter = ExampleFilter()
 
         # 2.) create local pipes for interior streams
-        pipe = LocalNumpyPipe(name="raw", layout="float32_1")
+        pipe = LocalPipe(name="raw", layout="float32_1")
 
         # 3.) convert modules into tasks
         #  output is an interior stream (write-end)

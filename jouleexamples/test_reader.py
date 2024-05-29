@@ -1,4 +1,4 @@
-from joule.utils.localnumpypipe import LocalNumpyPipe
+from joule.models.pipes import LocalPipe
 import asynctest
 import asyncio
 import numpy as np
@@ -12,7 +12,7 @@ class TestReader(asynctest.TestCase):
         " with a rate=0.1, reader should generate 10 values in 1 second "
         # build test objects 
         my_reader = ReaderDemo()
-        pipe = LocalNumpyPipe("output", layout="float32_1")
+        pipe = LocalPipe("output", layout="float32_1")
         args = argparse.Namespace(rate=0.1, pipes="unset")
         # run reader in an event loop
         loop = asyncio.get_event_loop()

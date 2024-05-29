@@ -1,4 +1,4 @@
-from joule.utils.localnumpypipe import LocalNumpyPipe
+from joule.models.pipes import LocalPipe
 import asynctest
 import asyncio
 import numpy as np
@@ -12,8 +12,8 @@ class TestFilter(asynctest.TestCase):
         " with offset=2, output should be 2+input "
         # build test objects
         my_filter = FilterDemo()
-        pipe_in = LocalNumpyPipe("input", layout="float32_1")
-        pipe_out = LocalNumpyPipe("output", layout="float32_1")
+        pipe_in = LocalPipe("input", layout="float32_1")
+        pipe_out = LocalPipe("output", layout="float32_1")
         args = argparse.Namespace(offset=2)
         # create the input data 0,1,2,...,9
         # fake timestamps are ok, just use an increasing sequence

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from joule import FilterModule, EmptyPipe
+from joule.client import FilterModule
+from joule.models.pipes import EmptyPipe
 
 class OffsetFilter(FilterModule):
     "Add offset to data "
